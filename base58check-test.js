@@ -26,10 +26,27 @@ async function toWif() {
     "XFPxuUn5Epz625e6FXAVXL5W8C87iLc8q8KK8ioexsU8dwj9RidW",
     "XFdqUukoCypRmmSrVWCZm5gFC7DGKNByHr66DmVL6JZTEPzmkoog",
     "XCBPnETeYM3CESgw94wM19u6qR4YWkokHB9MuCD4faTMbVeBRkmT",
+    // generated with dashwallet.js
+    "XHN7WwKXnGgFa6y2AoeDijQWRU6A8ZAHamHiXFzxFVQWnWcmn5e3",
+    "XvGqRuMLSoMEPE78taNuSjysgU5HiaXGav",
+    "XEzQAWaFgpq5D8FzwsFthh77Agw7Tt2JJVHd357toX5F45YPFvmq",
+    "Xx2KqcTGKDFLCbdBK3yZFcREY8cMYxNnBA",
+    "XHNv3RVF4Bg7zpfKbGogGsYNLuEYjPPHgo4FwjCpnZoFoQW5Ypp2",
+    "Xd1SWtnMHHsTJLQmB12RdTNUeJwNE5cojY",
   ].reduce(async function (prev, wif) {
     await b58c.verify(wif);
 
     let decoded = await b58c.decode(wif);
+    if (34 === wif.length) {
+      let check = await b58c.checksum({
+        pubKeyHash: decoded.pubKeyHash,
+      });
+      if (decoded.check !== check) {
+        throw new Error("checksum({ pubKeyHash }) failed");
+      }
+      return;
+    }
+
     let check = await b58c.checksum({
       privateKey: decoded.privateKey,
     });

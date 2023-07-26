@@ -45,7 +45,8 @@ async function toWif() {
       }
     }
 
-    if (decoded.check !== check) {
+    let isCorrectChecksum = decoded.check === check;
+    if (!isCorrectChecksum) {
       throw new Error("checksum({ privateKey }) failed");
     }
 
@@ -77,7 +78,10 @@ async function toPubKeyHash() {
   }
 
   let parts = await b58c.verify(addr);
-  console.info(`\t` + JSON.stringify(parts));
+  let json = JSON.stringify(parts, null, 2);
+  json = json.replace(/^/gm, "\t");
+  console.info(`Decode:`);
+  console.info(`${json}\n`);
 
   let check = await b58c.checksum({
     pubKeyHash: parts.pubKeyHash,
@@ -96,6 +100,7 @@ async function toPubKeyHash() {
   }
 
   let full = await b58c.encode(parts);
+  console.info(`Encode:`);
   console.info(`\t${full}`);
 
   if (full !== addr) {

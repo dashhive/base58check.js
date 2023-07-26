@@ -9,7 +9,7 @@ let bs58 = require(`base-x`)(BASE58);
 let b58c = Base58Check.create({
   pubKeyHashVersion: "4c",
   privateKeyVersion: "cc",
-  // TODO allow changing dicitonary
+  // TODO allow changing dictionary
 });
 
 async function toWif() {

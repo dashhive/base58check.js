@@ -1,4 +1,4 @@
-# @root/base58check
+# @dashincubator/base58check
 
 Base58Check & WIF for Public Key Hash addresses and Private Keys
 
@@ -10,7 +10,7 @@ WIF.
 ### CLI
 
 ```bash
-npm install -g @root/base58check
+npm install -g @dashincubator/base58check
 ```
 
 ```bash
@@ -29,7 +29,7 @@ base58check 3320974335dc4888b501e965fe5ff3c4421c09c4 4c
 ### Node.js
 
 ```bash
-npm install --save @root/base58check
+npm install --save @dashincubator/base58check
 ```
 
 ```js

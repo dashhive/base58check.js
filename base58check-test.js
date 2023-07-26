@@ -38,9 +38,11 @@ async function toWif() {
       await b58c.checksum({
         pubKeyHash: decoded.privateKey,
       });
-      throw new Error("allowed checksum of wrong key type");
+      throw new Error("should not allow checksum of wrong key type");
     } catch (e) {
-      // ignore, expected
+      if (e.code !== "E_PKH_LENGTH") {
+        throw e;
+      }
     }
 
     if (decoded.check !== check) {

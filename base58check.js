@@ -10,6 +10,7 @@
   let Crypto = globalThis.crypto;
 
   let BASE58 = `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`;
+  let PKH_LEN = 40;
 
   let Base58Check = {};
   let BaseX = {};
@@ -38,6 +39,15 @@
       b58c._setVersion(parts);
       parts.compressed = parts.compressed ?? true;
 
+      if (parts.pubKeyHash) {
+        if (parts.pubKeyHash.length !== PKH_LEN) {
+          let err = new Error(
+            `expected length of 'pubKeyHash' to be ${PKH_LEN}, but got ${parts.pubKeyHash.length}`
+          );
+          err.code = "E_PKH_LENGTH";
+          throw err;
+        }
+      }
       let key = parts.pubKeyHash || parts.privateKey;
       let compression = "";
       if (parts.compressed && 64 === key.length) {

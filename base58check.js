@@ -7,7 +7,7 @@
 
   /** @type {import('crypto')} */
   //@ts-ignore
-  let Crypto = exports.crypto || require("node:crypto");
+  let Crypto = globalThis.crypto;
 
   let BASE58 = `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`;
 

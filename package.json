@@ -7,9 +7,9 @@
     "base58check": "./bin/base58check.js"
   },
   "scripts": {
+    "bump": "npm version -m \"chore(release): bump to v%s\"",
     "fmt": "npx prettier@2 --write '*/**.{js,md}' ",
-    "test": "npx -p pta@1 -- pta 'tests/**/*.js'",
-    "version": "npm version -m \"chore(release): bump to v%s\""
+    "test": "npx -p pta@1 -- pta 'tests/**/*.js'"
   },
   "repository": {
     "type": "git",

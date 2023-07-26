@@ -2,7 +2,7 @@
 
 const BASE58 = `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`;
 
-let Base58Check = require("./base58check.js").Base58Check;
+let Base58Check = require("../base58check.js").Base58Check;
 
 let bs58 = require(`base-x`)(BASE58);
 
@@ -11,6 +11,8 @@ let b58c = Base58Check.create({
   privateKeyVersion: "cc",
   // TODO allow changing dictionary
 });
+
+let Zora = require("zora");
 
 async function toWif() {
   await [
@@ -108,18 +110,11 @@ async function toPubKeyHash() {
   }
 }
 
-async function main() {
-  console.info("");
-  console.info("To WIF...");
+Zora.test(`To WIF...`, async function (t) {
   await toWif();
-  console.info(`PASS`);
-
-  console.info("");
-  console.info(`To PubKeyHash...`);
+  t.ok(true);
+});
+Zora.test(`To PubKeyHash...`, async function (t) {
   await toPubKeyHash();
-  console.info(`PASS`);
-
-  console.info("");
-}
-
-main();
+  t.ok(true);
+});

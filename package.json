@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/dashhive/base58check.js/issues"
   },
-  "homepage": "https://github.com/dashhive/base58check.js#readme"
+  "homepage": "https://github.com/dashhive/base58check.js#readme",
+  "devDependencies": {
+    "base-x": "^4.0.0"
+  }
 }

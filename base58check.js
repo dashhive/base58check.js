@@ -5,8 +5,6 @@
   // - https://en.bitcoin.it/wiki/Base58Check_encoding
   // - https://appdevtools.com/base58-encoder-decoder
 
-  /** @type {import('crypto')} */
-  //@ts-ignore
   let Crypto = globalThis.crypto;
 
   let BASE58 = `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`;
